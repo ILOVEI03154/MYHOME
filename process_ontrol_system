@@ -1,0 +1,42 @@
+digraph G {
+	compound=true rankdir=TB splines=ortho
+	subgraph cluster_field {
+		color=gray label="现场设备层" style=rounded
+		PS [label="压力传感器" shape=box]
+		TS [label="温度传感器" shape=box]
+		RLG [label="雷达液位计" shape=box]
+		IFM [label="进料流量计" shape=box]
+		OFM [label="出料流量计" shape=box]
+		GCD [label="可燃气体探测器" shape=box]
+		ESB [label="紧急停车按钮" shape=box]
+		FCV [label="进料调节阀" shape=box]
+		ICV [label="进料切断阀" shape=box]
+		OCV [label="出料切断阀" shape=box]
+		ALA [label="声光报警器" shape=box]
+		SV [label="喷淋电磁阀" shape=box]
+	}
+	subgraph cluster_ctrl {
+		fillcolor="#f9f9ff" label="控制层" style="filled,rounded"
+		PLC [label="西门子 S7-1200 PLC
+(CPU + I/O模块)" fillcolor="#ff99ff" shape=box3d style=filled]
+	}
+	subgraph cluster_monitor {
+		fillcolor="#e6e6ff" label="监控层" style="filled,rounded"
+		HMI [label="WinCC HMI
+(触摸屏/PC)" fillcolor="#ccccff" shape=folder style=filled]
+	}
+	PS -> PLC
+	TS -> PLC
+	RLG -> PLC
+	IFM -> PLC
+	OFM -> PLC
+	GCD -> PLC
+	ESB -> PLC
+	PLC -> FCV
+	PLC -> ICV
+	PLC -> OCV
+	PLC -> ALA
+	PLC -> SV
+	PLC -> HMI [label=Profinet fontcolor=blue style=dashed]
+	nodesep=0.5 ranksep=1.2
+}
