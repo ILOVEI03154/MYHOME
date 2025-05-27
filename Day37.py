@@ -472,7 +472,7 @@ print(f"使用设备: {device}")  # 打印当前使用的设备（确认是否�
 # ------------------- 加载并清洗数据 -------------------
 # 加载信贷预测数据集（假设data.csv在当前目录下）
 # 数据包含用户信息（如收入、工作年限）和标签（是否违约：Credit Default）
-data = pd.read_csv(r'python60-days-challenge\1_python-learning-library\data.csv')
+data = pd.read_csv(r'MYHOME\data.csv')
  
 # 丢弃无用的Id列（Id是用户唯一标识，与信贷违约无关）
 data = data.drop(['Id'], axis=1)  # axis=1表示按列删除
@@ -536,7 +536,7 @@ data = pd.get_dummies(data, columns=['Purpose'])  # 对"Purpose"列做独热编�
  
 # 独热编码后会生成新列（比如Purpose_购车、Purpose_教育），需要将这些列的类型从bool转成int（0/1）
 list_final = []  # 存储新生成的列名
-data2 = pd.read_csv(r'python60-days-challenge\1_python-learning-library\data.csv')  # 重新读取原始数据（对比列名）
+data2 = pd.read_csv(r'MYHOME\data.csv')  # 重新读取原始数据（对比列名）
 for i in data.columns:
     if i not in data2.columns:  # 原始数据没有的列，就是新生成的独热列
         list_final.append(i)
